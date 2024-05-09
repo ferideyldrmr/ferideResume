@@ -8,7 +8,11 @@ services:
 
       context: .
 
-      dockerfile: Dockerfile
+      dockerfile: DockerFile
+    env_file:
+      - ferideResume/.env
+    volumes:
+      - .:/srv/app
 
     ports:
 

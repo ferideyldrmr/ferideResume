@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -128,3 +129,21 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email settings
+""""
+#EMAIL_HOST = 'smtp.live.com'
+EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_PORT = 465
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = 'buysal31@gmail.com'
+EMAIL_HOST_PASSWORD = 'ubog egck ntoc wilu'
+EMAIL_USE_TLS = True
+#EMAIL_HOST_USER = 'feride_2002@hotmail.com'
+#EMAIL_HOST_PASSWORD = 'zvtn stjd omeq qtwd'
+"""
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "ferideyildirimer0@gmail.com"
+EMAIL_HOST_PASSWORD = "bwsn rswx zkzi iozt"
+EMAIL_USE_TLS = True
