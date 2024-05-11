@@ -2,32 +2,38 @@ from django.db import models
 
 
 # Create your models here.
-class GeneralSettings(models.Model):
+class GeneralSetting(models.Model):
     name = models.CharField(
-        defaulte='',
+        default='',
         max_length=254,
         blank=True,
+        verbose_name='Name',
+        help_text='This is variable of the settings.'
     )
-    description = models.TextField(
+    description = models.CharField(
         blank=True,
         default='',
         max_length=254,
+        verbose_name='Description'
     )
     parameter = models.CharField(
         blank=True,
         max_length=254,
         default='',
+        verbose_name='Parameter'
     )
     updated_date = models.DateTimeField(
         blank=True,
         auto_now=True,
+        verbose_name='Updated date'
     )
     created_date = models.DateTimeField(
         blank=True,
         auto_now_add=True,
+        verbose_name='Created date'
     )
 
-    def _str_(self):
+    def __str__(self):
         return f'General Setting: {self.name}'
 
     class Meta:

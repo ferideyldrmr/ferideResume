@@ -5,19 +5,17 @@
 
         <div class="profile">
             <img src="{% get_media_prefix %}img/profile-img1.jpg" alt="" class="img-fluid rounded-circle">
-            <h1 class="text-light"><a href="index.html">Feride Yıldırımer</a></h1>
+            <h1 class="text-light"><a href={% url 'index' %}>Feride Yıldırımer</a></h1>
             <div class="social-links mt-3 text-center">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="https://www.linkedin.com/in/feride-y%C4%B1ld%C4%B1r%C4%B1mer-40396a22a/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://github.com/ferideyldrmr" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://www.linkedin.com/in/feride-y%C4%B1ld%C4%B1r%C4%B1mer-40396a22a/" class="linkedin"><i
+                        class="bx bxl-linkedin"></i></a>
             </div>
         </div>
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
-                <li><a href="{% url 'index' %}#hero"
+                <li><a href="{% url 'index' %}"
                        class="nav-link {% if request.resolver_match.url_name == "index" %}active{% endif %}"><i
                         class="bx bx-home"></i> <span>Home</span></a></li>
                 <li><a href="{% url 'index' %}#about"
@@ -26,6 +24,9 @@
                 <li><a href="{% url 'index' %}#resume"
                        class="nav-link scrollto {% if '/#resume' in request.get_full_path %}active{% endif %}"><i
                         class="bx bx-file-blank"></i> <span>Resume</span></a></li>
+                <li><a href="{% url 'index' %}#services"
+                       class="nav-link scrollto {% if '/#services' in request.get_full_path %}active{% endif %}"><i
+                        class="bi bi-clipboard2-check"></i> <span>Certificates</span></a></li>
                 <li><a href="{% url 'index' %}#contact"
                        class="nav-link scrollto {% if '/#contact/' in request.get_full_path %}active{% endif %}"><i
                         class="bx bx-envelope"></i> <span>Contact</span></a></li>
