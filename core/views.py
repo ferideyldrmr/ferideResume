@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
-from core.models import GeneralSetting
-
+from core.models import GeneralSetting, Skill, Experience
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 def index(request):
     site_title = GeneralSetting.objects.get(name='site_title').parameter
@@ -12,16 +13,19 @@ def index(request):
     About_me_desc = GeneralSetting.objects.get(name='About_me_desc').parameter
     About_me_desc2 = GeneralSetting.objects.get(name='About_me_desc2').parameter
     skills_desc = GeneralSetting.objects.get(name='skills_desc').parameter
-    html_level = GeneralSetting.objects.get(name='html_level').parameter
     resume_desc = GeneralSetting.objects.get(name='resume_desc').parameter
     phone = GeneralSetting.objects.get(name='phone').parameter
     location = GeneralSetting.objects.get(name='location').parameter
     mail = GeneralSetting.objects.get(name='mail').parameter
     sumary_desc = GeneralSetting.objects.get(name='sumary_desc').parameter
-    exp1_desc = GeneralSetting.objects.get(name='exp1_desc').parameter
-    exp2_desc = GeneralSetting.objects.get(name='exp2_desc').parameter
     cert1_desc = GeneralSetting.objects.get(name='cert1_desc').parameter
     contact_desc = GeneralSetting.objects.get(name='contact_desc').parameter
+
+    # Skills
+    skills = Skill.objects.all()
+
+    experiences = Experience.objects.all()
+
     context = {
         'site_title': site_title,
         'site_keywords': site_keywords,
@@ -31,16 +35,16 @@ def index(request):
         'About_me_desc': About_me_desc,
         'About_me_desc2': About_me_desc2,
         'skills_desc': skills_desc,
-        'html_level': html_level,
         'resume_desc': resume_desc,
         'phone': phone,
         'location': location,
         'mail': mail,
         'sumary_desc': sumary_desc,
-        'exp1_desc': exp1_desc,
-        'exp2_desc': exp2_desc,
+
         'cert1_desc': cert1_desc,
-        'contact_desc': contact_desc
+        'contact_desc': contact_desc,
+        'skills': skills,
+        'experiences': experiences
     }
     return render(request, 'index.html', context=context)
 
@@ -63,9 +67,9 @@ def contact_form(request):
             ['ferideyildirimer0@gmail.com'],  # Alıcı e-posta adresi
         )
 
-        print("if worked")
-        return render(request, 'index.html', {"message_name": nameText})
-    else:
+        print("Form successfully submitted")
+        return HttpResponseRedirect(reverse('index'))  # Redirect to the index page
 
-        print("else worked")
-        return render(request, 'index.html', {"message_name": "sa"})
+    else:
+        print("Form not submitted")
+        return render(request, 'index.html', {"message_name": "hata"})

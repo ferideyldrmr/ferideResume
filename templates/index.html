@@ -121,58 +121,35 @@
             </div>
 
             <div class="row skills-content">
+                <div class="col-lg-6" data-aos="fade-up">
+                    {% for skill in skills %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <div class="progress">
+                                <span class="skill">{{ skill.name }} <i class="val">{{ skill.percentage }}</i></span>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
 
                 <div class="col-lg-6" data-aos="fade-up">
-
-                    <div class="progress">
-                        <span class="skill">HTML <i class="val">{{ html_level }}%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="{{ html_level }}"
-                                 aria-valuemin="0"
-                                 aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">CSS <i class="val">65%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0"
-                                 aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">JavaScript <i class="val">70%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0"
-                                 aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
+                    {% for skill in skills %}
+                        {% if not forloop.counter0|divisibleby:2 %}
+                            <div class="progress">
+                                <span class="skill">{{ skill.name }} <i class="val">{{ skill.percentage }}</i></span>
+                                <div class="progress-bar-wrap">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
-
-                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-
-                    <div class="progress">
-                        <span class="skill">Vue.js <i class="val">50%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
-                                 aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-                    <div class="progress">
-                        <span class="skill">Django <i class="val">50%</i></span>
-                        <div class="progress-bar-wrap">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
-                                 aria-valuemax="100"></div>
-                        </div>
-                    </div>
-
-
-                </div>
-
             </div>
+
 
         </div>
     </section><!-- End Skills Section -->
@@ -221,23 +198,23 @@
                 </div>
                 <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
                     <h3 class="resume-title">Professional Experience</h3>
-                    <div class="resume-item">
-                        <h4>Hardware intern at Çizgi Technology</h4>
-                        <h5>01.07.2023 – 31.07.2023 </h5>
-                        <p><i class="bi bi-geo-alt-fill"></i><em>Sancaktepe, Istanbul </em></p>
-                        <ul>
-                            {{ exp2_desc }}
-                        </ul>
-                    </div>
-                    <div class="resume-item">
-                        <h4>Software intern at Azerion Turkey Company </h4>
-                        <h5>01.07.2023 – 31.07.2023</h5>
+                    {% for experience in experiences %}
+                        <div class="resume-item">
+                            <h4>{{ experience.company_name }}</h4>
+                            <h5>{{ experience.start_date|date:"M Y" }} -
+                                {% if experience.end_date %}
+                                    {{ experience.end_date|date:"M Y" }}
+                                {% else %}
+                                    Present
+                                {% endif %}
 
-                        <p><i class="bi bi-geo-alt-fill"></i><em>Maltepe, Istanbul</em></p>
-                        <ul>
-                            {{ exp1_desc }}
-                        </ul>
-                    </div>
+                            </h5>
+                            <p><i class="bi bi-geo-alt-fill"></i><em>{{ experience.job_location }} </em></p>
+                            <ul>
+                                {{ experience.job_description }}
+                            </ul>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -264,46 +241,12 @@
                                 <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                             </p>
                             <a href="https://hizliresim.com/9wmio4g" target="_blank">
-                                <img src="{% get_media_prefix %}/img/testimonials/sertifika.jpg" class="testimonial-img"
+                                <img src="{% get_media_prefix %}img/testimonials/sertifika.jpg" class="testimonial-img"
                                      alt="">
                             </a>
+                        </div>
+                    </div>
 
-
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="testimonial-item" data-aos="fade-up">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Certificate 1
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{% get_media_prefix %}/img/testimonials/testimonials-1.jpg"
-                                 class="testimonial-img" alt="">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="testimonial-item" data-aos="fade-up">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Certificate 2
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{% get_media_prefix %}/img/testimonials/testimonials-2.jpg"
-                                 class="testimonial-img" alt="">
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="testimonial-item" data-aos="fade-up">
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                Certificate 3
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                            <img src="{% get_media_prefix %}/img/testimonials/testimonials-3.jpg"
-                                 class="testimonial-img" alt="">
-                        </div>
-                    </div>
                     <!-- End testimonial item -->
 
                 </div>
@@ -320,7 +263,7 @@
 
             <div class="section-title">
                 <h2>Contact</h2>
-                <p>{{ contact_desc}}</p>
+                <p>{{ contact_desc }}</p>
             </div>
 
             <div class="row" data-aos="fade-in">
@@ -330,19 +273,19 @@
                         <div class="address">
                             <i class="bi bi-geo-alt"></i>
                             <h4>Location:</h4>
-                            <p>{{ location}}</p>
+                            <p>{{ location }}</p>
                         </div>
 
                         <div class="email">
                             <i class="bi bi-envelope"></i>
                             <h4>Email:</h4>
-                            <p>{{ mail}}</p>
+                            <p>{{ mail }}</p>
                         </div>
 
                         <div class="phone">
                             <i class="bi bi-phone"></i>
                             <h4>Call:</h4>
-                            <p>{{ phone}}</p>
+                            <p>{{ phone }}</p>
                         </div>
 
                         <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
@@ -352,7 +295,7 @@
                 </div>
 
                 <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-                    <form action="{% url 'contact_form' %}" method="post" role="form">
+                    <form action="{% url 'contact_form' %}" method="post" role="form" id="şablon">
                         {% csrf_token %}
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -377,8 +320,15 @@
                             <div class="error-message"></div>
 
                         </div>
+                        <!-- Modal -->
+                        <div id="myModal" class="modal">
+                            <div class="modal-content">
+                                <span class="close">&times;</span>
+                                <p>Your message has been sent. Thank you!</p>
+                            </div>
+                        </div>
                         <div class="text-center">
-                            <button type="submit">Send Message</button>
+                            <button id="buton" type="submit">Send Message</button>
                         </div>
                     </form>
 
@@ -399,5 +349,23 @@
 
 {% include 'includes/footer.html' %}
 </body>
+
+<style>
+    #şablon {
+        width: 100%;
+        padding: 30px;
+        background: #fff;
+        box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    #buton {
+        background: #149ddd;
+        border: 0;
+        padding: 10px 24px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 4px;
+    }
+</style>
 
 </html>

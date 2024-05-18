@@ -3,5 +3,5 @@ from .views import index, contact, contact_form
 
 urlpatterns = [
     path('', index, name='index'),
-    path('index.html', contact_form, name='contact_form'),
+    path('contact_form/', contact_form, name='contact_form'),  # Updated URL pattern
 ]
